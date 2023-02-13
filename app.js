@@ -122,11 +122,12 @@ app.get("/directors/", async (request, response) => {
 });
 //movies of specific director
 app.get("/directors/:directorId/movies/", async (request, response) => {
+  const { directorId} = request.params
   const getMoviesQuery = `
     SELECT
       movie_name
     FROM
-      movie NATURAL JOIN director
+      movie
       WHERE director_id=${directorId}
     ORDER BY
       movie_id;`;
